@@ -47,7 +47,7 @@
             {{ subTaskCheckPoint['summary']['end_to_end_duration']['min'] | humanizeDuration }}
           </td>
           <td>
-            {{ subTaskCheckPoint['summary']['checkpointed_size']['min'] | humanizeBytes }}
+            {{ (subTaskCheckPoint['summary']['checkpointed_size'] ? subTaskCheckPoint['summary']['checkpointed_size']['min'] : subTaskCheckPoint['summary']['state_size']['min']) | humanizeBytes }}
           </td>
           <td>{{ subTaskCheckPoint['summary']['state_size']['min'] | humanizeBytes }}</td>
           <td>
@@ -76,7 +76,7 @@
             {{ subTaskCheckPoint['summary']['end_to_end_duration']['avg'] | humanizeDuration }}
           </td>
           <td>
-            {{ subTaskCheckPoint['summary']['checkpointed_size']['avg'] | humanizeBytes }}
+            {{ (subTaskCheckPoint['summary']['checkpointed_size'] ? subTaskCheckPoint['summary']['checkpointed_size']['avg'] : subTaskCheckPoint['summary']['state_size']['avg']) | humanizeBytes }}
           </td>
           <td>{{ subTaskCheckPoint['summary']['state_size']['avg'] | humanizeBytes }}</td>
           <td>
@@ -105,7 +105,7 @@
             {{ subTaskCheckPoint['summary']['end_to_end_duration']['max'] | humanizeDuration }}
           </td>
           <td>
-            {{ subTaskCheckPoint['summary']['checkpointed_size']['max'] | humanizeBytes }}
+            {{ (subTaskCheckPoint['summary']['checkpointed_size'] ? subTaskCheckPoint['summary']['checkpointed_size']['max'] : subTaskCheckPoint['summary']['state_size']['max']) | humanizeBytes }}
           </td>
           <td>{{ subTaskCheckPoint['summary']['state_size']['max'] | humanizeBytes }}</td>
           <td>
@@ -172,7 +172,7 @@
             {{ subTask['end_to_end_duration'] | humanizeDuration }}
             <span *ngIf="subTask['aborted']">(aborted)</span>
           </td>
-          <td>{{ subTask['checkpointed_size'] | humanizeBytes }}</td>
+          <td>{{ (subTask['checkpointed_size'] ? subTask['checkpointed_size'] : subTask['state_size']) | humanizeBytes }}</td>
           <td>{{ subTask['state_size'] | humanizeBytes }}</td>
           <td>{{ subTask['checkpoint']['sync'] | humanizeDuration }}</td>
           <td>{{ subTask['checkpoint']['async'] | humanizeDuration }}</td>
